@@ -1,0 +1,73 @@
+version: 3.0
+
+tasks:
+  default:
+    deps:
+      - build
+      - test
+      - lint
+
+  build:
+    sources:
+      - "**/*.go"
+      - "**/*.pkl"
+      - "**/*.templ"
+    deps:
+      - gen
+    env:
+      CGO_ENANBLED: 1
+    cmds:
+      - go build -o ./bin/server{{ .BIN_SERVER_SUFFIX }} ./cmd/server/main.go
+
+  test:
+    sources:
+      - "**/*.go"
+    cmds:
+      - go test -v ./... -covermode=atomic -coverprofile=bin/coverage.out
+
+  lint-go:
+    sources:
+      - "**/*.go"
+    cmds:
+      - golangci-lint run
+
+  lint-pkl:
+    sources:
+      - "**/*.pkl"
+    cmds:
+      - pkl eval pkl/local/config.pkl
+
+  lint:
+    deps:
+      - lint-go
+      - lint-pkl
+
+  dev:
+    cmds:
+      - air
+
+  gen-pkl:
+    sources:
+      - pkl/Config.pkl
+    generates:
+      - gen/config/*.pkl.go
+    cmds:
+      - rm -rf gen/config/*.pkl.go
+      - go run github.com/apple/pkl-go/cmd/pkl-gen-go@latest pkl/Config.pkl
+
+  gen-templ:
+    sources:
+      - "**/*.templ"
+    generates:
+      - "**/*_templ.go"
+    cmds:
+      - go run github.com/a-h/templ/cmd/templ@latest generate
+
+  gen:
+    deps:
+      - gen-pkl
+      - gen-templ
+
+  format:
+    cmds:
+      - go run mvdan.cc/gofumpt@latest -l -w .

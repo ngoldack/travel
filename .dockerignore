@@ -1,0 +1,8 @@
+bin/
+.air.toml
+.gitignore
+README.md
+docker-compose.yaml
+.task
+tmp
+.golangci.yaml

@@ -1,0 +1,15 @@
+package pages
+
+import "github.com/ngoldack/travel/views/components"
+
+templ PostNew() {
+	<h1>New Post</h1>
+	<form method="post">
+		<div>
+			<label for="title">Title</label>
+			<input type="text" id="title" name="title" class="form-control" required/>
+		</div>
+		@components.Editor(true)
+		<button type="submit" class="btn btn-primary">Save</button>
+	</form>
+}

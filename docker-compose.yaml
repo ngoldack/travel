@@ -1,0 +1,25 @@
+version: "3.9"
+
+volumes:
+  minio-data:
+
+services:
+  libsql-server:
+    image: ghcr.io/tursodatabase/libsql-server:latest
+    ports:
+      - "8080:8080"
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+  minio:
+    image: minio/minio:latest
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    volumes:
+      - minio-data:/data
+    command: server /data --console-address ":9001"

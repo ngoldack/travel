@@ -1,0 +1,22 @@
+linters:
+  enable:
+    - gofumpt
+    - gocritic
+    - govet
+    - gosec
+    - errcheck
+    - exhaustive
+    - goimports
+    - staticcheck
+    - ineffassign
+    - errorlint
+    - sloglint
+    - durationcheck
+    - testpackage
+    - tenv
+    - revive
+    - testableexamples
+    - testifylint
+    - noctx
+    - nilerr
+    - nestif

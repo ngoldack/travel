@@ -1,0 +1,24 @@
+package components;
+
+templ Editor(live bool) {
+	<form class="flex flex-col w-full p-2">
+		<div class="flex">
+			<button class="btn" hx-post="/hx/post/render" hx-target="#editor-preview">Render</button>
+		</div>
+		<div class="flex flex-col w-full lg:flex-row p-2">
+			<div class="grid flex-grow border">
+				<div
+					class="w-full h-full"
+				>
+					<textarea name="editor" class="textarea w-full h-full"></textarea>
+				</div>
+			</div>
+			if live {
+				<div class="divider lg:divider-horizontal"></div>
+				<div class="grid flex-grow h-32 border">
+					<div id="editor-preview" class="w-full h-full"></div>
+				</div>
+			}
+		</div>
+	</form>
+}

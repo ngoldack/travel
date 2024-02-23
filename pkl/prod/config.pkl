@@ -1,0 +1,20 @@
+amends "../Config.pkl"
+
+logger {
+    level = "debug"
+    format = "dev"
+}
+
+server {
+    port = 3000
+    host = "0.0.0.0"
+}
+
+db {
+    url = "http://localhost:8080"
+}
+
+s3 {
+    endpoint = "http://localhost:9000"
+    bucket = "travel"
+}

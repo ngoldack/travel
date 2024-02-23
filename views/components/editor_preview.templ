@@ -1,0 +1,10 @@
+package components
+
+templ EditorPreview(preview string) {
+	// Overflow
+	<div class="overflow-auto">
+		<div class="prose dark:prose-invert">
+			@templ.Raw(preview)
+		</div>
+	</div>
+}

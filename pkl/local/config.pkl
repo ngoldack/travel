@@ -1,0 +1,34 @@
+amends "../Config.pkl"
+
+auth {
+    secret = "changeme"
+    maxAge = 1.d
+}
+
+app {
+    env = "development"
+}
+
+logger {
+    level = "debug"
+    format = "dev"
+}
+
+server {
+    port = 3000
+    host = "127.0.0.1"
+}
+
+db {
+    url = "http://localhost:8080"
+    token = "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MDg0NzMyNDAsImlkIjoiYjBlZTM5ODQtY2YzYS0xMWVlLWIxMmEtNjY5MjM2NGNlZTcyIn0.6DrRz_KTmhHzabqc_rQAyhWfZW5DDaOxsmbaEQQQioDsk17uBq0r97v5ciAU3cBeRCqoBIix7RgGxGmU2c13AQ"
+}
+
+s3 {
+    endpoint = "localhost:9000"
+    bucket = "travel"
+
+    id = "travel"
+    secret = "travel"
+    token = "travel"
+}

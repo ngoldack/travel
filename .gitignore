@@ -1,0 +1,12 @@
+bin
+*.sqlite
+tmp
+*_templ.go
+*.pkl.go
+gen
+.task
+
+# Downloaded files
+tailwind.min.js
+daisyui.css
+htmx.min.js

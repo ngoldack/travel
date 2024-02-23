@@ -1,0 +1,52 @@
+@go.Package { name = "github.com/ngoldack/travel/gen/config" }
+module ngoldack.travel.Config
+
+import "package://pkg.pkl-lang.org/pkl-go/pkl.golang@0.5.3#/go.pkl" 
+
+class Logger {
+    format: "json" | "dev"
+    level: "debug" | "info" | "warn" | "error"
+}
+
+typealias Port = UInt16(this > 0, this < 65535)
+
+typealias MaxAge = Duration(this > 0.s, this <= 30.d)
+
+class Auth {
+    secret: String
+    maxAge: MaxAge
+}
+
+class App {
+    env: "development" | "production"
+}
+
+class Server {
+    port: Port
+    host: String
+}
+
+class DB {
+    url: String
+    token: String
+
+    /// If true, the database will be purged on startup
+    purge: Boolean = false
+}
+
+class S3 {
+    endpoint: String
+
+    id: String
+    secret: String
+    token: String
+
+    bucket: String
+}
+
+app: App
+auth: Auth
+logger: Logger
+server: Server
+db: DB
+s3: S3
